@@ -9,6 +9,8 @@ import {MatBottomSheetRef} from '@angular/material';
 })
 export class ConfirmationPopupComponent implements OnInit {
 
+  intiallyEnabled: boolean;
+
   enabled: boolean;
 
   neverAskAgain: boolean;
@@ -16,6 +18,7 @@ export class ConfirmationPopupComponent implements OnInit {
   constructor(private sheetRef: MatBottomSheetRef<ConfirmationPopupComponent>,
               private googleAnalyticsService: GoogleAnalyticsService) {
     this.enabled = googleAnalyticsService.enabled.getValue();
+    this.intiallyEnabled = googleAnalyticsService.enabled.getValue();
     this.neverAskAgain = googleAnalyticsService.neverAskAgain.getValue();
   }
 
@@ -25,5 +28,8 @@ export class ConfirmationPopupComponent implements OnInit {
   accept() {
     this.googleAnalyticsService.setEnabled(this.enabled, this.neverAskAgain);
     this.sheetRef.dismiss(this.enabled);
+    if (! this.enabled && this.intiallyEnabled) {
+      window.location.reload();
+    }
   }
 }
