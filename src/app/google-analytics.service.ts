@@ -1,7 +1,6 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {MatBottomSheet} from '@angular/material';
-import {ConfirmationPopupComponent} from './confirmation-popup/confirmation-popup.component';
+import {DOCUMENT} from '@angular/common';
 
 export const GOOGLE_ANALYTICS_ENABLED = 'GOOGLE_ANALYTICS_ENABLED';
 
@@ -18,7 +17,7 @@ export class GoogleAnalyticsService {
     const existingSetting = localStorage.getItem(GOOGLE_ANALYTICS_ENABLED);
     if (existingSetting) {
       this.neverAskAgain.next(true);
-      this.enabled.next(Boolean(existingSetting));
+      this.enabled.next(existingSetting === 'true');
     }
     this.neverAskAgain.subscribe(neverAskAgain => {
       if (neverAskAgain) {
