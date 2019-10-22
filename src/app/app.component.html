@@ -1,0 +1,9 @@
+<h1>Google Analytics Opt-In POC</h1>
+
+<p>Currently Google Analytics is <b>{{(googleAnalyticsService.enabled | async) ? 'enabled' : 'disabled'}}</b></p>
+<p>You will <b *ngIf="(googleAnalyticsService.neverAskAgain | async)">NOT </b> be asked for your preferences after page reloads</p>
+
+<p class="button-bar">
+  <button mat-raised-button color="primary" (click)="openPopup()">Change Settings</button>
+  <button mat-raised-button (click)="refresh()">Refresh Page</button>
+</p>

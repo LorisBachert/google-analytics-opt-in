@@ -1,0 +1,11 @@
+<mat-nav-list>
+  <mat-list-item>
+    <mat-slide-toggle [(ngModel)]="enabled">Use Google Analytics</mat-slide-toggle>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-checkbox [(ngModel)]="neverAskAgain">Never ask me again</mat-checkbox>
+  </mat-list-item>
+</mat-nav-list>
+<p>
+  <button mat-raised-button (click)="accept()" color="primary">Accept</button>
+</p>
