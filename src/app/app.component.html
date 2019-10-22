@@ -7,3 +7,15 @@
   <button mat-raised-button color="primary" (click)="openPopup()">Change Settings</button>
   <button mat-raised-button (click)="refresh()">Refresh Page</button>
 </p>
+
+<ng-container *ngIf="googleAnalyticsService.enabled | async">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49802232-2"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-49802232-2');
+  </script>
+</ng-container>
